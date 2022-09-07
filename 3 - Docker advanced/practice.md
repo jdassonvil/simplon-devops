@@ -3,7 +3,7 @@
 ## Publishing to docker hub registry
 1. Create an account on hub.docker.com
 1. Publish the your simple node app on docker hub
-1. Share the usage instruction on #devops so that anyone can use it
+1. Share your image on #Devops so that anyone can use it
 
 # Part 2
 ## Networking
