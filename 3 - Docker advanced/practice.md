@@ -5,7 +5,8 @@
 1. Publish the your simple node app on docker hub
 1. Share the usage instruction on #devops so that anyone can use it
 
-# Part 2: Networking
+# Part 2
+## Networking
 
 1. Start a mongo database using docker in daemon monde. What is its IP address ? How can you reach it ?
 1. From the mongo container run the command `mongosh`
@@ -25,7 +26,8 @@ db.messages.insertOne({"message": "Hello it's <your name>"});
 1. Update the Dockerfile and make sure the application can still be started
 1. Run both applications in containers
 
-# Part 3: Volumes
+# Part 3
+### Volumes
 
 1. Checkout the [documentation](https://hub.docker.com/_/mongo) to understand how volumes should be configured for mongodb
 1. Use a named volume to persist the mongo data
