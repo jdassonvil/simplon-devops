@@ -1,1 +1,2 @@
-Slides:
+- [Slides](https://docs.google.com/presentation/d/1i0R6AFMBwTkm3Gxo7vsvE1PJlkGDDZ2Q25VU-zzRAOw/edit#slide=id.g14b7971547b_0_285)
+- [Exercise](https://github.com/jdassonvil/simplon-devops/blob/main/2%20-%20Intro%20to%20docker/practice.md)
