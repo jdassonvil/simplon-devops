@@ -24,7 +24,7 @@
 
 # Part 2
 
-## Writing Dockerfiles
+## Writing my first Dockerfile
 
 1. Fork the [simple NodeJS application](https://github.com/jdassonvil/simple-node-app)
 2. Update the app.js file to display your own message at line 7.
