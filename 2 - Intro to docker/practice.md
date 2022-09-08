@@ -29,7 +29,7 @@
 1. Fork the [simple NodeJS application](https://github.com/jdassonvil/simple-node-app)
 2. Update the app.js file to display your own message at line 7.
 3. Write a Dockerfile for this application based on an ubuntu image.
-4. Build the image and test that the container is working properly.
+4. Build the image and test it locally.
 5. Update the README to explain how to build and run this application.
 
 ### Bonus
