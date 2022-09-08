@@ -1,1 +1,2 @@
- Slides:
+ - [Slides](https://docs.google.com/presentation/d/1FeKwq67naDTWglMAWNzK2wFTGITvJP6pp_8_kERf79E/edit?usp=sharing)
+ - [Exercise](https://github.com/jdassonvil/simplon-devops/blob/main/3%20-%20Docker%20advanced/practice.md)
