@@ -1,2 +1,2 @@
 - [Slides](https://docs.google.com/presentation/d/1N4QlYymFuOdCG7amUgsWqmo0fSkTsGmrqTtyHuN2vDw/edit?usp=sharing)
- - [Exercise]()
+- [Exercise]()
