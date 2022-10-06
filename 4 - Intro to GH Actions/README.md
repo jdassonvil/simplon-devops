@@ -1,2 +1,2 @@
 - [Slides](https://docs.google.com/presentation/d/1N4QlYymFuOdCG7amUgsWqmo0fSkTsGmrqTtyHuN2vDw/edit?usp=sharing)
-- [Exercise]()
+- [Exercise](https://github.com/jdassonvil/simplon-devops/blob/main/4%20-%20Intro%20to%20GH%20Actions/practice.md)
