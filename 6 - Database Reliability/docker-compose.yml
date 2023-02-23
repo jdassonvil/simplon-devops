@@ -1,0 +1,41 @@
+services:
+  postgres-master:
+    image: postgres:14.5
+    container_name: postgres-master
+    environment:
+      PGUSER: postgres
+      POSTGRES_DB: simplon-db
+      POSTGRES_PASSWORD: simplon
+    command: postgres -c 'config_file=/etc/postgresql/postgresql.conf'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - ./conf/master/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./conf/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./init-scripts/master:/docker-entrypoint-initdb.d:ro
+      - pg-master-data:/var/lib/postgresql/data
+
+  postgres-replica-1:
+    image: postgres:14.5
+    container_name: postgres-slave
+    depends_on:
+      postgres-master:
+        condition: service_healthy
+    command: /bin/bash /opt/init.sh
+    user: postgres
+    environment:
+      PGUSER: postgres
+      POSTGRES_DB: simplon-db
+      POSTGRES_PASSWORD: simplon
+    volumes:
+      - ./conf/replica/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./conf/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./init-scripts/replica/init.sh:/opt/init.sh:ro
+      - pg-replica-1-data:/var/lib/postgresql/data
+
+volumes:
+  pg-master-data:
+  pg-replica-1-data:
