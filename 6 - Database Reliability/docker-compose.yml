@@ -20,11 +20,11 @@ services:
 
   postgres-replica-1:
     image: postgres:14.5
-    container_name: postgres-slave
+    container_name: postgres-replica-1
     depends_on:
       postgres-master:
         condition: service_healthy
-    command: /bin/bash /opt/init.sh
+    command: /bin/bash /opt/init.sh 1
     user: postgres
     environment:
       PGUSER: postgres
@@ -36,6 +36,26 @@ services:
       - ./init-scripts/replica/init.sh:/opt/init.sh:ro
       - pg-replica-1-data:/var/lib/postgresql/data
 
+  postgres-replica-2:
+    image: postgres:14.5
+    container_name: postgres-replica-2
+    depends_on:
+      postgres-master:
+        condition: service_healthy
+    command: /bin/bash /opt/init.sh 2
+    user: postgres
+    environment:
+      PGUSER: postgres
+      POSTGRES_DB: simplon-db
+      POSTGRES_PASSWORD: simplon
+    volumes:
+      - ./conf/replica/postgresql.conf:/etc/postgresql/postgresql.conf:ro
+      - ./conf/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - ./init-scripts/replica/init.sh:/opt/init.sh:ro
+      - pg-replica-2-data:/var/lib/postgresql/data
+
+
 volumes:
   pg-master-data:
   pg-replica-1-data:
+  pg-replica-2-data:
