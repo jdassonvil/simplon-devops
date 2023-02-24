@@ -2,6 +2,14 @@ from flask import Flask, redirect, request, url_for, abort
 import logging
 import psycopg
 
+LOG_FORMAT = '%(asctime)s %(message)s'
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+logHandler = logging.StreamHandler()
+logHandler.setFormatter(logging.Formatter(LOG_FORMAT))
+logger.addHandler(logHandler)
+
 app = Flask(__name__)
 
 def build_connection_string(pg_host: str):
