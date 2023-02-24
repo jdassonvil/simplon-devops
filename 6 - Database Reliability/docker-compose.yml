@@ -1,3 +1,4 @@
+# https://medium.com/swlh/postgresql-replication-with-docker-c6a904becf77
 services:
   postgres-master:
     image: postgres:14.5
