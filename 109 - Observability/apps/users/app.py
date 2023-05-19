@@ -1,8 +1,10 @@
 from flask import Flask, redirect, request, url_for, abort
+from datadog import initialize, statsd
 import logging
 import psycopg
 import os
 
+# configure logger
 LOG_FORMAT = '%(asctime)s %(message)s'
 
 logger = logging.getLogger()
@@ -10,6 +12,13 @@ logger.setLevel(logging.INFO)
 logHandler = logging.StreamHandler()
 logHandler.setFormatter(logging.Formatter(LOG_FORMAT))
 logger.addHandler(logHandler)
+
+# configure statsd
+options = {
+    "statsd_host": os.getenv("DD_AGENT_HOST"),
+    "statsd_port": 8125,
+}
+initialize(**options)
 
 app = Flask(__name__)
 
@@ -24,6 +33,7 @@ def db_connection():
 @app.route("/users/<userEmail>")
 def get_user(userEmail):
     with db_connection() as conn:
+        statsd.increment("demo.users.hits", 1)
         cursor = conn.execute(f"SELECT * FROM users WHERE email='{userEmail}'")
 
         for record in cursor:
