@@ -25,7 +25,6 @@ def read_write_connection():
 def read_only_connection():
     return psycopg.connect(build_connection_string("postgres-replica-1,postgres-replica-2"))
 
-
 @app.route("/cars")
 def list_cars():
     cars = []
@@ -36,7 +35,6 @@ def list_cars():
             cars.append({"{} {}".format(record[1], record[2])})
 
     return "<ul>{}</ul>".format("".join("<li>{}</li>".format(c) for c in cars))
-
 
 @app.route("/car", methods=["POST"])
 def add_car():
