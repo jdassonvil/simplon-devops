@@ -1,0 +1,44 @@
+services:
+  users:
+    build: ./apps/users
+    container_name: users      
+    labels:
+      com.datadoghq.ad.logs: '[{"source": "python", "service": "users"}]'
+    environment:
+      PG_HOST: users-db
+      PG_USER: simplon
+      PG_DATABASE: users
+      PG_PASSWORD: simplon
+      DD_AGENT_HOST: dd-agent
+    ports:
+      - "5000:5000"
+  users-db:
+    image: postgres:14.5
+    container_name: users-db
+    environment:
+      POSTGRES_USER: simplon
+      POSTGRES_DB: users
+      POSTGRES_PASSWORD: simplon
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./init-scripts:/docker-entrypoint-initdb.d:ro
+
+  dd-agent:
+    image: datadog/agent:7.44.1
+    container_name: dd-agent     
+    environment:
+      DD_ENV: dev
+      DD_API_KEY: ${DD_API_KEY}
+      DD_LOGS_CONFIG_CONTAINER_COLLECT_ALL: "true"
+      DD_LOGS_ENABLED: "true"
+      DD_APM_NON_LOCAL_TRAFFIC: "true"
+      DD_DOGSTATSD_NON_LOCAL_TRAFFIC: "true"
+      DD_CONTAINER_EXCLUDE: datadog-agent
+    volumes:
+     - /var/run/docker.sock:/var/run/docker.sock
+     - /proc/:/host/proc/:ro
+     - /sys/fs/cgroup:/host/sys/fs/cgroup:ro
+     - /var/lib/docker/containers:/var/lib/docker/containers:ro
+
+volumes:
+  pg-data:
